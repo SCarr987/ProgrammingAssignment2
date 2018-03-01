@@ -1,8 +1,18 @@
 ## Coursera - R Programming Programming Assignment 2
-## write a pair of functions that cache the inverse of a matrix
+## Demonstration of lexical scoping, to use variables defined in context of an R-object function
+## to decrease computing time for large objects, such as a large-dimensioned matrix
+## This code demonstrates inversion and caching after the get operation
+## which is available to a second function that uses the cache if available
+## or performs inversion if not. 
+##
+## Function descriptions
 ## makeCacheMatrix caches the inverse of a matrix
-## This function has three internal functions, to get the initial matrix
-## Then setinver and getinver set the inverse and get the inverse of that matrix, respectively
+## cacheSolve checks to see if inverse has been cached previously, if not, performs inverse
+## The solve function takes the inverse of a matrix
+##
+## makeCacheMatrix detail 
+## Contains three functions - get to get the matrix, setinver to compute the inverse
+## and getinver as a handle for passing cached information to next function, cacheSolve
 
 makeCacheMatrix <- function(x = matrix()) {
   inver <- NULL
@@ -18,9 +28,11 @@ makeCacheMatrix <- function(x = matrix()) {
          getinver = getinver)
 }
 
+## cacheSolve detail
+## Receives return value getinver from makeCacheMatrix
+## If getinver is populated this is the cached value for matrix inverse, and this value is returned
+## otherwise, the matrix inverse is calculated and this value is returned
 
-## This function checks to see if the value is already cached and if so, returns the inverse
-## If it is not cached, the inverse is calculated 
 
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
